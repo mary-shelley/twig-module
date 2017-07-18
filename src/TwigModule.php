@@ -1,22 +1,20 @@
 <?php
-namespace Corley\DoctrineModule;
+namespace Corley\TwigModule;
 
 use Corley\Modular\Module\ModuleInterface;
 use Zend\ServiceManager\ServiceManager;
 use Psr\Container\ContainerInterface;
 
-class DoctrineModule implements ModuleInterface
+class TwigModule implements ModuleInterface
 {
     public function __construct(array $options = [])
     {
         $this->options = array_replace_recursive([
-            "orm" =>  [
-                "connection" => [
-                ],
+            'templates' => __DIR__,
+            'options' => [
+                'cache' => "/tmp",
+                'debug' => true,
             ],
-            "entities" => ["/tmp"],
-            "development" => true,
-            "cache" => "/tmp",
         ], $options);
     }
 
@@ -26,7 +24,7 @@ class DoctrineModule implements ModuleInterface
 
         $serviceManager = new ServiceManager();
         $serviceManager->configure($conf["services"]);
-        $serviceManager->setService("doctrine-config", $this->options);
+        $serviceManager->setService("twig-config", $this->options);
 
         return $serviceManager;
     }

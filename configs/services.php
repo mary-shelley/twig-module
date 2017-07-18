@@ -1,16 +1,14 @@
 <?php
 
-use Doctrine\ORM\EntityManager;
-use Corley\DoctrineModule\Factory\EntityManagerFactory;
+use Corley\TwigModule\Factory\TwigFactory;
 
 return [
     "services" => [
         "factories" => [
-            EntityManager::class => EntityManagerFactory::class,
+            \Twig_Environment::class => TwigFactory::class,
         ],
         "aliases" => [
-            "doctrine.orm.entity_manager" => EntityManager::class,
-            "orm" => "doctrine.orm.entity_manager",
+            "twig" => \Twig_Environment::class,
         ],
     ],
 ];

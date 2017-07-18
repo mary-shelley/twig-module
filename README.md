@@ -1,20 +1,16 @@
-# Doctrine ORM Module
+# Twig Template Module
 
-Add Doctrine ORM to your project
+Add Twig templates to your project
 
 ```php
 [
     ...,
-    new DoctirneModule([
-        "orm" =>  [
-            "connection" => [
-                'driver' => 'pdo_sqlite',
-                'path' => __DIR__ . '/_files',
-            ],
+    new TwigModule([
+        'templates' => __DIR__ . '/app/resources',
+        'options' => [
+            'cache' => '/tmp',
+            'debug' => true,
         ],
-        "entities" => [__DIR__ . "/src"],
-        "development" => true,
-        "cache" => "/tmp",
     ]),
 ]
 ```
